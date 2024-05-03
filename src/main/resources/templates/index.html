@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Reparation Info</title>
+</head>
+<body>
+<a href="/about">About</a>
+<h1>Phone Reparation Info</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>Platform</th>
+        <th>Camera</th>
+        <th>Internet</th>
+        <th>GPS Module</th>
+        <th>Recorder</th>
+        <th>Price</th>
+        <th>Opt Price</th>
+        <th>User Last Name</th>
+        <th>User Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="phoneReparationInfo : ${phoneReparationInfos}">
+        <td th:text="${phoneReparationInfo.id}"></td>
+        <td th:text="${phoneReparationInfo.title}"></td>
+        <td th:text="${phoneReparationInfo.manufacturer}"></td>
+        <td th:text="${phoneReparationInfo.model}"></td>
+        <td th:text="${phoneReparationInfo.platform}"></td>
+        <td th:text="${phoneReparationInfo.camera}"></td>
+        <td th:text="${phoneReparationInfo.internet}"></td>
+        <td th:text="${phoneReparationInfo.gpsModule}"></td>
+        <td th:text="${phoneReparationInfo.recorder}"></td>
+        <td th:text="${phoneReparationInfo.price}"></td>
+        <td th:text="${phoneReparationInfo.optPrice}"></td>
+        <td th:text="${phoneReparationInfo.userLastName}"></td>
+        <td th:text="${phoneReparationInfo.userEmail}"></td>
+        <td>
+            <div>
+                <a style="color: blue;" th:href="@{/edit/{id}(id=${phoneReparationInfo.id})}">Edit</a>
+            </div>
+            <div>
+                <form th:action="@{/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${phoneReparationInfo.id}" />
+                    <button type="submit" style="background: none; border: none; padding: 0; font: inherit; color: blue; text-decoration: underline; cursor: pointer;">Delete</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Add New Phone Reparation Info</h2>
+<form action="#" th:action="@{/add}" th:object="${newPhoneReparationInfo}" method="post">
+    <label>Title: <input required type="text" th:field="*{title}"></label><br>
+    <label>Manufacturer: <input required type="text" th:field="*{manufacturer}"></label><br>
+    <label>Model: <input required type="text" th:field="*{model}"></label><br>
+    <label>Platform: <input required type="text" th:field="*{platform}"></label><br>
+    <label>Camera: <input type="checkbox" th:field="*{camera}"></label><br>
+    <label>Internet: <input required type="text" th:field="*{internet}"></label><br>
+    <label>GPS Module: <input type="checkbox" th:field="*{gpsModule}"></label><br>
+    <label>Recorder: <input type="checkbox" th:field="*{recorder}"></label><br>
+    <label>Price: <input required type="number" th:field="*{price}"></label><br>
+    <label>Opt Price: <input required type="number" th:field="*{optPrice}"></label><br>
+    <label>User Last Name: <input required type="text" th:field="*{userLastName}"></label><br>
+    <label>User Email: <input required type="email" th:field="*{userEmail}"></label><br>
+    <input type="submit" value="Submit">
+    <ul th:if="${violations != null && !violations.isEmpty()}">
+        <li th:each="violation : ${violations}" th:text="${violation.getMessage()}"></li>
+    </ul>
+</form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Phone Repair Information</title>
+</head>
+<body>
+<h1>Edit Phone Repair Information</h1>
+<form th:action="@{/update/{id}(id=${phoneReparationInfo.id})}" th:object="${phoneReparationInfo}" method="post">
+    <label>Title: <input required type="text" th:field="*{title}"></label><br>
+    <label>Manufacturer: <input required type="text" th:field="*{manufacturer}"></label><br>
+    <label>Model: <input required type="text" th:field="*{model}"></label><br>
+    <label>Platform: <input required type="text" th:field="*{platform}"></label><br>
+    <label>Camera: <input type="checkbox" th:field="*{camera}"></label><br>
+    <label>Internet: <input required type="text" th:field="*{internet}"></label><br>
+    <label>GPS Module: <input type="checkbox" th:field="*{gpsModule}"></label><br>
+    <label>Recorder: <input type="checkbox" th:field="*{recorder}"></label><br>
+    <label>Price: <input required type="number" th:field="*{price}"></label><br>
+    <label>Opt Price: <input required type="number" th:field="*{optPrice}"></label><br>
+    <label>User Last Name: <input required type="text" th:field="*{userLastName}"></label><br>
+    <label>User Email: <input required type="email" th:field="*{userEmail}"></label><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
